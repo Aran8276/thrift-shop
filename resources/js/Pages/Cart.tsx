@@ -107,12 +107,17 @@ const cartContentReducer = (state: CartDetail[], action: CartContentState) => {
                           ...item,
                           purchaseAmt: Math.max(
                               1,
-                              Math.min(action.value ?? item.purchaseAmt, 50)
+                              Math.min(
+                                  isNaN(Number(action.value)) ||
+                                      Number(action.value) < 1
+                                      ? 1
+                                      : Number(action.value),
+                                  50
+                              )
                           ),
                       }
                     : item
             );
-
         default:
             return state;
     }

@@ -79,9 +79,9 @@ export default function Authenticated({
                                 content="Keranjang Saya"
                                 className="self-center"
                             >
-                                <a href={route("cart")}>
+                                <Link href={route("cart")}>
                                     <ShoppingCart size={20} />
-                                </a>
+                                </Link>
                             </Tooltip>
                         </div>
 

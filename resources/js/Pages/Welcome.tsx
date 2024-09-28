@@ -1,5 +1,4 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Button, ButtonGroup } from "@nextui-org/button";
 import { Head } from "@inertiajs/react";
 import TopLandingSection from "@/Components/Sections/TopLandingSection";
 import TrustBadgeSection from "@/Components/Sections/TrustBadgeSection";

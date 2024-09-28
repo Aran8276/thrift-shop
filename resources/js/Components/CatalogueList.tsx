@@ -7,6 +7,7 @@ interface SelfProps {
 }
 
 export interface CatalogueContent {
+    pakaianId?: string;
     pakaianNama: string;
     pakaianHarga: number;
     pakaianStok: number;
@@ -16,48 +17,56 @@ export interface CatalogueContent {
 export default function CatalogueList(props: SelfProps) {
     const catalogueList: CatalogueContent[] = [
         {
+            pakaianId: "Abcdef",
             pakaianNama: "Baju 1",
             pakaianHarga: 20000,
             pakaianStok: 12,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abcsadsaddef",
             pakaianNama: "Baju 2",
             pakaianHarga: 40000,
             pakaianStok: 0,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abc3e3def",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abc354tdef",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abcde3e413wef",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abcd32432ef",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abe3d32cdef",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
         {
+            pakaianId: "Abe32ecd21ef",
             pakaianNama: "Baju 3",
             pakaianHarga: 120000,
             pakaianStok: 24,
@@ -106,7 +115,7 @@ export default function CatalogueList(props: SelfProps) {
                             </div>
                         </Card>
                     ) : (
-                        <a href="#">
+                        <a href={route("product", { id: item.pakaianId })}>
                             <Card
                                 isPressable
                                 className="flex flex-col max-w-[18rem] hover:scale-[1.07] text-start"

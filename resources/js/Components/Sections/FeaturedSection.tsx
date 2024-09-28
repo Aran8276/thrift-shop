@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import { Button } from "@nextui-org/button";
 import React from "react";
 
@@ -22,12 +23,14 @@ export default function FeaturedSection() {
                         perferendis ducimus?
                     </h2>
                     <div className="flex md:justify-start justify-center">
-                        <Button
-                            size="lg"
-                            className="bg-sky-500 px-12 py-6 text-lg text-white"
-                        >
-                            Belanja
-                        </Button>
+                        <a href={route("shop")}>
+                            <Button
+                                size="lg"
+                                className="bg-sky-500 px-12 py-6 text-lg text-white"
+                            >
+                                Belanja
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </div>
