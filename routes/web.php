@@ -30,6 +30,14 @@ Route::get('/product/{id}', function ($id) {
     return Inertia::render('Product', ['pakianId' => $id]);
 })->middleware(['auth', 'verified'])->name('product');
 
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('Admin/AdminDashboard');
+})->middleware(['auth', 'verified'])->name('adminDashboard');
+
+Route::get('/admin/product', function () {
+    return Inertia::render('Admin/AdminProduct');
+})->middleware(['auth', 'verified'])->name('adminProduct');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
