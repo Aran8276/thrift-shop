@@ -12,11 +12,19 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->middleware(['auth', 'verified'])->name('welcome');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/shop', function () {
+    return Inertia::render('Shop');
+})->middleware(['auth', 'verified'])->name('shop');
+
+Route::get('/cart', function () {
+    return Inertia::render('Cart');
+})->middleware(['auth', 'verified'])->name('cart');
+
+Route::get('/payment', function () {
+    return Inertia::render('Payment');
+})->middleware(['auth', 'verified'])->name('payment');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,4 +32,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
