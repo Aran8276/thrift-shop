@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/Components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Link } from "@inertiajs/react";
+import { NavLink } from "./AdminSidebar";
 
 interface SelfProps {
     breadcrumb: string[];
@@ -61,6 +63,20 @@ export default function AdminHeader(props: SelfProps) {
             </Breadcrumb>
         );
     };
+
+    const navLinks: NavLink[] = [
+        {
+            label: "Beranda",
+            icon: <Home className="h-5 w-5" />,
+            href: route("adminDashboard"),
+        },
+        {
+            label: "Produk",
+            icon: <Package className="h-5 w-5" />,
+            href: route("adminProduct"),
+        },
+    ];
+
     return (
         <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
             <Sheet>
@@ -73,47 +89,24 @@ export default function AdminHeader(props: SelfProps) {
                 <SheetContent side="left" className="sm:max-w-xs">
                     <nav className="grid gap-6 text-lg font-medium">
                         <a
-                            href="#"
+                            href={route("welcome")}
                             className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                         >
                             <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                            <span className="sr-only">Acme Inc</span>
+                            <span className="sr-only">Aran8276</span>
                         </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                        >
-                            <Home className="h-5 w-5" />
-                            Products
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                        >
-                            <ShoppingCart className="h-5 w-5" />
-                            Orders
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 px-2.5 text-foreground"
-                        >
-                            <Package className="h-5 w-5" />
-                            Products
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                        >
-                            <Users2 className="h-5 w-5" />
-                            Customers
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                        >
-                            <LineChart className="h-5 w-5" />
-                            Settings
-                        </a>
+                        {navLinks.map((items, index) => {
+                            return (
+                                <Link
+                                    key={index}
+                                    href={items.href}
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                >
+                                    {items.icon}
+                                    {items.label}
+                                </Link>
+                            );
+                        })}
                     </nav>
                 </SheetContent>
             </Sheet>

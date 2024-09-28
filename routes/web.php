@@ -38,6 +38,14 @@ Route::get('/admin/product', function () {
     return Inertia::render('Admin/AdminProduct');
 })->middleware(['auth', 'verified'])->name('adminProduct');
 
+Route::get('/admin/product/create', function () {
+    return Inertia::render('Admin/AdminCreateProduct');
+})->middleware(['auth', 'verified'])->name('adminCreateProduct');
+
+Route::get('/admin/product/edit/{id}', function ($id) {
+    return Inertia::render('Admin/AdminEditProduct', ['id' => $id]);
+})->middleware(['auth', 'verified'])->name('adminEditProduct');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

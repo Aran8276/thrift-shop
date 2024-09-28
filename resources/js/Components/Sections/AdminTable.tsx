@@ -19,6 +19,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { CatalogueContent } from "../CatalogueList";
+import { Link } from "@inertiajs/react";
 
 interface SelfProps {
     data: CatalogueContent[];
@@ -80,9 +81,15 @@ export default function AdminTable(props: SelfProps) {
                                         <DropdownMenuLabel>
                                             Aksi
                                         </DropdownMenuLabel>
-                                        <DropdownMenuItem>
-                                            Edit
-                                        </DropdownMenuItem>
+                                        <Link
+                                            href={route("adminEditProduct", {
+                                                id: item.pakaianId,
+                                            })}
+                                        >
+                                            <DropdownMenuItem>
+                                                Edit
+                                            </DropdownMenuItem>
+                                        </Link>
                                         <DropdownMenuItem>
                                             <span className="text-red-500">
                                                 Hapus

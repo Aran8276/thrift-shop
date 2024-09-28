@@ -20,6 +20,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AdminTable from "@/Components/Sections/AdminTable";
 import { CatalogueContent } from "@/Components/CatalogueList";
 import AdminLayout from "@/Layouts/AdminLayout";
+import { Link } from "@inertiajs/react";
 
 export default function AdminProduct() {
     const productsList: CatalogueContent[] = [
@@ -80,7 +81,28 @@ export default function AdminProduct() {
             pakaianGambarUrl: "http://via.placeholder.com/300",
         },
     ];
-    const breadcrumb = ["Product"];
+    const breadcrumb = ["Produk"];
+
+    const convertToCSV = (array: CatalogueContent[]) => {
+        const header = Object.keys(array[0]).join(",") + "\n";
+        const rows = array
+            .map((obj) => Object.values(obj).join(","))
+            .join("\n");
+        return header + rows;
+    };
+
+    const downloadCSV = () => {
+        const csv = convertToCSV(productsList);
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.setAttribute("download", "data_produk.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <AdminLayout breadcrumb={breadcrumb}>
             <Tabs defaultValue="all">
@@ -127,6 +149,7 @@ export default function AdminProduct() {
                             </DropdownMenuContent>
                         </DropdownMenu>
                         <Button
+                            onClick={downloadCSV}
                             size="sm"
                             variant="outline"
                             className="h-8 gap-1"
@@ -136,12 +159,14 @@ export default function AdminProduct() {
                                 Ekspor
                             </span>
                         </Button>
-                        <Button size="sm" className="h-8 gap-1">
-                            <PlusCircle className="h-3.5 w-3.5" />
-                            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                                Tambahkan Produk
-                            </span>
-                        </Button>
+                        <Link href={route("adminCreateProduct")}>
+                            <Button size="sm" className="h-8 gap-1">
+                                <PlusCircle className="h-3.5 w-3.5" />
+                                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                                    Tambahkan Produk
+                                </span>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
                 <TabsContent value="all">
